@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Kletties\Persistence" package="src.Orm.Zed.Kletties.Persistence">
+
+    <table name="fok_kletties_order" identifierQuoting="true">
+        <column name="id_kletties_order" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+
+        <column name="fk_sales_order" required="false" type="INTEGER"/>
+
+        <column name="order_reference" required="false" size="255" type="VARCHAR"/>
+        <column name="store" required="true" size="255" type="VARCHAR"/>
+        <column name="payment_status" required="false" size="255" type="VARCHAR"/>
+        <column name="kletties_reference" required="false" size="255" type="VARCHAR"/>
+
+        <id-method-parameter value="fok_kletties_order_pk_seq"/>
+
+        <unique name="fok_kletties_order-order_reference">
+            <unique-column name="order_reference"/>
+        </unique>
+
+        <unique name="fok_kletties_order-kletties_reference">
+            <unique-column name="kletties_reference"/>
+        </unique>
+
+        <index name="fok_kletties_order-index-order_reference">
+            <index-column name="order_reference"/>
+        </index>
+
+        <index name="fok_kletties_order-index-kletties_reference">
+            <index-column name="kletties_reference"/>
+        </index>
+
+        <behavior name="timestampable"/>
+    </table>
+
+    <table name="fok_kletties_order_item" identifierQuoting="true">
+        <column name="id_kletties_order_item" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+
+        <column name="fk_kletties_order" required="true" type="INTEGER"/>
+        <column name="fk_kletties_vendor" required="true" type="INTEGER"/>
+
+        <column name="sku" required="true" size="255" type="VARCHAR"/>
+        <column name="shop_sku" required="true" size="255" type="VARCHAR"/>
+        <column name="qty" required="true" type="INTEGER"/>
+
+        <id-method-parameter value="fok_kletties_order_item_pk_seq"/>
+
+        <behavior name="timestampable"/>
+
+        <foreign-key name="fok_kletties_order_item-fk_kletties_order" foreignTable="fok_kletties_order">
+            <reference local="fk_kletties_order" foreign="id_kletties_order"/>
+        </foreign-key>
+
+        <foreign-key name="fok_kletties_order_item-fk_kletties_vendor" foreignTable="fok_kletties_vendor">
+            <reference local="fk_kletties_vendor" foreign="id_kletties_vendor"/>
+        </foreign-key>
+    </table>
+
+    <table name="fok_kletties_vendor" identifierQuoting="true">
+        <column name="id_kletties_vendor" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+
+        <column name="name" required="true" size="255" type="VARCHAR"/>
+
+        <id-method-parameter value="fok_kletties_vendor_pk_seq"/>
+    </table>
+</database>
