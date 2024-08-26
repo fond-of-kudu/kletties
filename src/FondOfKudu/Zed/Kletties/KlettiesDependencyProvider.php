@@ -12,12 +12,12 @@ class KlettiesDependencyProvider extends AbstractBundleDependencyProvider
     /**
      * @var string
      */
-    public const FACADE_LOCALE = '35UP:LOCALE_FACADE';
+    public const FACADE_LOCALE = 'KLETTIES:LOCALE_FACADE';
 
     /**
      * @var string
      */
-    public const FACADE_STORE = '35UP:STORE_FACADE';
+    public const FACADE_STORE = 'KLETTIES:STORE_FACADE';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
