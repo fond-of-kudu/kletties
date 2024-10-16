@@ -22,6 +22,7 @@
         <property name="sku" type="string"/>
         <property name="shopSku" type="string"/>
         <property name="qty" type="int"/>
+        <property name="printjobId" type="string"/>
         <property name="createdAt" type="int"/>
         <property name="updatedAt" type="int"/>
     </transfer>
@@ -42,8 +43,13 @@
     </transfer>
 
     <transfer name="Item">
+        <property name="printjobId" type="string"/>
         <property name="fkSalesOrderItem" type="int" />
         <property name="abstractAttributes" singular="abstractAttribute" type="array"/>
+    </transfer>
+
+    <transfer name="CartItemRequest">
+        <property name="printjobId" type="string"/>
     </transfer>
 
 </transfers>

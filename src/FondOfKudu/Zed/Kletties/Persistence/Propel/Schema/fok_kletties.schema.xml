@@ -43,6 +43,7 @@
         <column name="sku" required="true" size="255" type="VARCHAR"/>
         <column name="shop_sku" required="true" size="255" type="VARCHAR"/>
         <column name="qty" required="true" type="INTEGER"/>
+        <column name="printjob_id" required="false" size="255" type="VARCHAR"/>
 
         <id-method-parameter value="fok_kletties_order_item_pk_seq"/>
 

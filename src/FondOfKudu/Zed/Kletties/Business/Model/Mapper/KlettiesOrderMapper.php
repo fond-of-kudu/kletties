@@ -210,7 +210,8 @@ class KlettiesOrderMapper implements KlettiesOrderMapperInterface
             ->setSku($value)
             ->setQty($itemTransfer->getQuantity())
             ->setShopSku($itemTransfer->getSku())
-            ->setVendor($this->mapVendor($vendor));
+            ->setVendor($this->mapVendor($vendor))
+            ->setPrintjobId($itemTransfer->getPrintjobId());
     }
 
     /**
