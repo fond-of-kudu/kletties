@@ -13,6 +13,9 @@
         <column name="payment_status" required="false" size="255" type="VARCHAR"/>
         <column name="kletties_reference" required="false" size="255" type="VARCHAR"/>
 
+        <column name="error" required="false" size="255" type="VARCHAR"/>
+        <column name="errormessage" required="false" size="255" type="VARCHAR"/>
+
         <id-method-parameter value="fok_kletties_order_pk_seq"/>
 
         <unique name="fok_kletties_order-order_reference">

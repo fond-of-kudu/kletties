@@ -106,6 +106,7 @@ class KlettiesEntityManager extends AbstractEntityManager implements KlettiesEnt
             ->setFkKlettiesOrder($itemTransfer->getIdKlettiesOrder())
             ->setCreatedAt($now)
             ->setUpdatedAt($now)
+            ->setPrintjobId($itemTransfer->getPrintjobId())
             ->save();
 
         $itemTransfer->fromArray($entity->toArray(), true);

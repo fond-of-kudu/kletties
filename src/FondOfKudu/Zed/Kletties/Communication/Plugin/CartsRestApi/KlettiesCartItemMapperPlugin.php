@@ -11,7 +11,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
  * @method \FondOfKudu\Zed\Kletties\KlettiesConfig getConfig()
  * @method \FondOfKudu\Zed\Kletties\Business\KlettiesFacadeInterface getFacade()
  */
-class PrintjobCartItemMapperPlugin extends AbstractPlugin implements CartItemMapperPluginInterface
+class KlettiesCartItemMapperPlugin extends AbstractPlugin implements CartItemMapperPluginInterface
 {
     /**
      * @api
@@ -30,7 +30,9 @@ class PrintjobCartItemMapperPlugin extends AbstractPlugin implements CartItemMap
                 continue;
             }
 
-            $itemTransfer->setPrintjobId($cartItemRequestTransfer->getPrintjobId());
+            $itemTransfer
+                ->setPrintjobId($cartItemRequestTransfer->getPrintjobId())
+                ->setPreviewImageUrl($cartItemRequestTransfer->getPreviewImageUrl());
         }
 
         return $persistentCartChangeTransfer;

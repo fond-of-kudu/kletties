@@ -70,7 +70,8 @@ class KlettiesEntityMapper implements KlettiesEntityMapperInterface
             ->setId($orderItem->getIdKlettiesOrderItem())
             ->setCreatedAt($this->convertDateTimeToTimestamp($orderItem->getCreatedAt()))
             ->setUpdatedAt($this->convertDateTimeToTimestamp($orderItem->getUpdatedAt()))
-            ->setIdKlettiesOrder($orderItem->getFkKlettiesOrder());
+            ->setIdKlettiesOrder($orderItem->getFkKlettiesOrder())
+            ->setPrintjobId($orderItem->getPrintjobId());
 
         return $orderItemTransfer;
     }

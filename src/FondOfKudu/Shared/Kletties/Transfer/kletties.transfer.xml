@@ -44,12 +44,19 @@
 
     <transfer name="Item">
         <property name="printjobId" type="string"/>
+        <property name="previewImageUrl" type="string"/>
         <property name="fkSalesOrderItem" type="int" />
         <property name="abstractAttributes" singular="abstractAttribute" type="array"/>
     </transfer>
 
     <transfer name="CartItemRequest">
         <property name="printjobId" type="string"/>
+        <property name="previewImageUrl" type="string"/>
+    </transfer>
+
+    <transfer name="RestItemsAttributes">
+        <property name="printjobId" type="string"/>
+        <property name="previewImageUrl" type="string"/>
     </transfer>
 
 </transfers>
