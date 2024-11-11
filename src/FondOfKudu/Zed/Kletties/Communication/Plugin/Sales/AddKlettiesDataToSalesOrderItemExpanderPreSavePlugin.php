@@ -34,7 +34,7 @@ class AddKlettiesDataToSalesOrderItemExpanderPreSavePlugin extends AbstractPlugi
 
         if ($klettiesOrder !== null) {
             foreach ($klettiesOrder->getVendorItems() as $klettiesOrderItemTransfer) {
-                if ($salesOrderItemEntity->getSku() === $klettiesOrderItemTransfer->getShopSku()) {
+                if ($salesOrderItemEntity->getGroupKey() === $klettiesOrderItemTransfer->getShopSku()) {
                     $salesOrderItemEntity->setVendor($klettiesOrderItemTransfer->getVendor()->getName());
                     $salesOrderItemEntity->setVendorSku($klettiesOrderItemTransfer->getSku());
 

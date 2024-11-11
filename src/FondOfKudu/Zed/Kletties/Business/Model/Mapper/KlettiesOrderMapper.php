@@ -120,6 +120,7 @@ class KlettiesOrderMapper implements KlettiesOrderMapperInterface
         $klettiesItems = [];
         $knownVendor = $this->config->getKnownVendor();
         $currentLocale = $this->localeFacade->getCurrentLocaleName();
+
         foreach ($this->groupItems($quoteTransfer->getItems()) as $itemTransfer) {
             $attributes = $itemTransfer->getAbstractAttributes();
 
@@ -154,14 +155,14 @@ class KlettiesOrderMapper implements KlettiesOrderMapperInterface
         /** @var array<\Generated\Shared\Transfer\ItemTransfer> $groupedItems */
         $groupedItems = [];
         foreach ($items as $itemTransfer) {
-            $sku = $itemTransfer->getSku();
-            if (array_key_exists($sku, $groupedItems)) {
-                $groupedItems[$sku]->setQuantity($itemTransfer->getQuantity() + $groupedItems[$sku]->getQuantity());
+            $groupKey = $itemTransfer->getGroupKey();
+            if (array_key_exists($groupKey, $groupedItems)) {
+                $groupedItems[$groupKey]->setQuantity($itemTransfer->getQuantity() + $groupedItems[$groupKey]->getQuantity());
 
                 continue;
             }
 
-            $groupedItems[$sku] = clone $itemTransfer;
+            $groupedItems[$groupKey] = clone $itemTransfer;
         }
 
         return $groupedItems;
@@ -209,7 +210,7 @@ class KlettiesOrderMapper implements KlettiesOrderMapperInterface
         return (new KlettiesOrderItemTransfer())
             ->setSku($value)
             ->setQty($itemTransfer->getQuantity())
-            ->setShopSku($itemTransfer->getSku())
+            ->setShopSku($itemTransfer->getGroupKey())
             ->setVendor($this->mapVendor($vendor))
             ->setPrintjobId($itemTransfer->getPrintjobId());
     }
@@ -241,7 +242,7 @@ class KlettiesOrderMapper implements KlettiesOrderMapperInterface
                     true,
                 )
             ) {
-                $check = sprintf('%s|%s', $itemTransfer->getFkSalesOrderItem(), $attributeValue);
+                $check = sprintf('%s|%s', $itemTransfer->getGroupKey(), $attributeValue);
                 if (array_key_exists($check, $klettiesItems) === true) {
                     return $klettiesItems;
                 }

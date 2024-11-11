@@ -93,7 +93,7 @@ class AddKlettiesDataToSalesOrderItemExpanderPreSavePluginTest extends Unit
         $items->append($this->klettiesOrderItemTransferMock);
         $this->quoteTransferMock->expects($this->once())->method('getKlettiesOrder')->willReturn($this->klettiesOrderTransferMock);
         $this->klettiesOrderTransferMock->expects($this->once())->method('getVendorItems')->willReturn($items);
-        $this->spySalesOrderItemEntityTransferMock->expects($this->once())->method('getSku')->willReturn('abc');
+        $this->spySalesOrderItemEntityTransferMock->expects($this->once())->method('getGroupKey')->willReturn('abc');
         $this->spySalesOrderItemEntityTransferMock->expects($this->once())->method('setVendor');
         $this->spySalesOrderItemEntityTransferMock->expects($this->once())->method('setVendorSku');
         $this->klettiesOrderItemTransferMock->expects($this->once())->method('getShopSku')->willReturn('abc');
