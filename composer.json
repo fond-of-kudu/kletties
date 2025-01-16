@@ -13,7 +13,8 @@
     "spryker/locale": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0",
     "spryker/store": "^1.1.0",
     "spryker/cart-extension": "^4.3.0",
-    "spryker/carts-rest-api-extension": "^1.0.0"
+    "spryker/carts-rest-api-extension": "^1.0.0",
+    "spryker/sales-extension": "^1.6.0"
   },
   "require-dev": {
     "fond-of-codeception/spryker": "*",

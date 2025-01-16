@@ -3,8 +3,11 @@
 namespace FondOfKudu\Zed\Kletties\Persistence;
 
 use FondOfKudu\Zed\Kletties\Persistence\Propel\Mapper\KlettiesEntityMapperInterface;
+use Generated\Shared\Transfer\KlettiesOrderItemTransfer;
 use Generated\Shared\Transfer\KlettiesOrderTransfer;
 use Orm\Zed\Kletties\Persistence\FokKlettiesOrder;
+use Orm\Zed\Kletties\Persistence\FokKlettiesOrderItem;
+use Orm\Zed\Kletties\Persistence\FokKlettiesOrderItemQuery;
 use Orm\Zed\Kletties\Persistence\FokKlettiesOrderQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
@@ -22,6 +25,11 @@ class KlettiesRepository extends AbstractRepository implements KlettiesRepositor
      * @var \Orm\Zed\Kletties\Persistence\FokKlettiesOrderQuery
      */
     protected $orderQuery;
+
+    /**
+     * @var \Orm\Zed\Kletties\Persistence\FokKlettiesOrderItemQuery
+     */
+    protected $orderItemQuery;
 
     /**
      * @param string $orderReference
@@ -72,6 +80,22 @@ class KlettiesRepository extends AbstractRepository implements KlettiesRepositor
     }
 
     /**
+     * @param string $shopSku
+     *
+     * @return \Generated\Shared\Transfer\KlettiesOrderItemTransfer|null
+     */
+    public function findKlettiesOrderItemByShopSku(string $shopSku): ?KlettiesOrderItemTransfer
+    {
+        $entity = $this->getOrderItemQuery()->findOneByShopSku($shopSku);
+
+        if ($entity === null) {
+            return null;
+        }
+
+        return $this->convertOrderItemEntityToTransfer($entity);
+    }
+
+    /**
      * @param \Orm\Zed\Kletties\Persistence\FokKlettiesOrder $klettiesOrder
      *
      * @return \Generated\Shared\Transfer\KlettiesOrderTransfer
@@ -79,6 +103,16 @@ class KlettiesRepository extends AbstractRepository implements KlettiesRepositor
     public function convertOrderEntityToTransfer(FokKlettiesOrder $klettiesOrder): KlettiesOrderTransfer
     {
         return $this->getMapper()->mapOrderFromEntity($klettiesOrder);
+    }
+
+    /**
+     * @param \Orm\Zed\Kletties\Persistence\FokKlettiesOrderItem $klettiesOrderItem
+     *
+     * @return \Generated\Shared\Transfer\KlettiesOrderItemTransfer
+     */
+    protected function convertOrderItemEntityToTransfer(FokKlettiesOrderItem $klettiesOrderItem): KlettiesOrderItemTransfer
+    {
+        return $this->getMapper()->mapOrderItemFromEntity($klettiesOrderItem);
     }
 
     /**
@@ -103,5 +137,17 @@ class KlettiesRepository extends AbstractRepository implements KlettiesRepositor
         }
 
         return $this->orderQuery;
+    }
+
+    /**
+     * @return \Orm\Zed\Kletties\Persistence\FokKlettiesOrderItemQuery
+     */
+    protected function getOrderItemQuery(): FokKlettiesOrderItemQuery
+    {
+        if ($this->orderItemQuery === null) {
+            $this->orderItemQuery = $this->getFactory()->createKlettiesOrderItemQuery();
+        }
+
+        return $this->orderItemQuery;
     }
 }

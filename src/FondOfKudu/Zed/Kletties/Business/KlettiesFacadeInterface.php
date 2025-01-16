@@ -75,4 +75,11 @@ interface KlettiesFacadeInterface
      * @return \Generated\Shared\Transfer\KlettiesOrderTransfer
      */
     public function updateKlettiesOrder(KlettiesOrderTransfer $klettiesOrderTransfer): KlettiesOrderTransfer;
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     *
+     * @return array<\Generated\Shared\Transfer\ItemTransfer>
+     */
+    public function expandOrderItemsWithPrintjobId(array $itemTransfers): array;
 }

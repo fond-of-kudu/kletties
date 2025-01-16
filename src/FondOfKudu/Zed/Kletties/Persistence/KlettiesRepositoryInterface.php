@@ -2,6 +2,7 @@
 
 namespace FondOfKudu\Zed\Kletties\Persistence;
 
+use Generated\Shared\Transfer\KlettiesOrderItemTransfer;
 use Generated\Shared\Transfer\KlettiesOrderTransfer;
 use Orm\Zed\Kletties\Persistence\FokKlettiesOrder;
 
@@ -33,6 +34,13 @@ interface KlettiesRepositoryInterface
      * @return \Generated\Shared\Transfer\KlettiesOrderTransfer|null
      */
     public function findKlettiesOrderById(int $id): ?KlettiesOrderTransfer;
+
+    /**
+     * @param string $shopSku
+     *
+     * @return \Generated\Shared\Transfer\KlettiesOrderItemTransfer|null
+     */
+    public function findKlettiesOrderItemByShopSku(string $shopSku): ?KlettiesOrderItemTransfer;
 
     /**
      * @param \Orm\Zed\Kletties\Persistence\FokKlettiesOrder $klettiesOrder

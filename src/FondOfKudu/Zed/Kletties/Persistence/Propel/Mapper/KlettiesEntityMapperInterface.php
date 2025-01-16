@@ -30,12 +30,8 @@ interface KlettiesEntityMapperInterface
 
     /**
      * @param \Orm\Zed\Kletties\Persistence\FokKlettiesOrderItem $orderItem
-     * @param \Generated\Shared\Transfer\KlettiesOrderTransfer $klettiesOrderTransfer
      *
      * @return \Generated\Shared\Transfer\KlettiesOrderItemTransfer
      */
-    public function mapOrderItemFromEntity(
-        FokKlettiesOrderItem $orderItem,
-        KlettiesOrderTransfer $klettiesOrderTransfer
-    ): KlettiesOrderItemTransfer;
+    public function mapOrderItemFromEntity(FokKlettiesOrderItem $orderItem): KlettiesOrderItemTransfer;
 }

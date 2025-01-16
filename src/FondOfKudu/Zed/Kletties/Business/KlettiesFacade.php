@@ -94,4 +94,16 @@ class KlettiesFacade extends AbstractFacade implements KlettiesFacadeInterface
     {
         return $this->getFactory()->createKlettiesOrderWriter()->update($klettiesOrderTransfer);
     }
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     *
+     * @return array<\Generated\Shared\Transfer\ItemTransfer>
+     */
+    public function expandOrderItemsWithPrintjobId(array $itemTransfers): array
+    {
+        return $this->getFactory()
+            ->createOrderItemPrintjobIdExpander()
+            ->expandOrderItemsWithPrintjobId($itemTransfers);
+    }
 }

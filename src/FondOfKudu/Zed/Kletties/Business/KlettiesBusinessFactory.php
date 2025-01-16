@@ -2,6 +2,8 @@
 
 namespace FondOfKudu\Zed\Kletties\Business;
 
+use FondOfKudu\Zed\Kletties\Business\Expander\OrderItemPrintjobIdExpander;
+use FondOfKudu\Zed\Kletties\Business\Expander\OrderItemPrintjobIdExpanderInterface;
 use FondOfKudu\Zed\Kletties\Business\Model\Handler\KlettiesOrderHandler;
 use FondOfKudu\Zed\Kletties\Business\Model\Handler\KlettiesOrderHandlerInterface;
 use FondOfKudu\Zed\Kletties\Business\Model\Mapper\KlettiesOrderMapper;
@@ -59,6 +61,14 @@ class KlettiesBusinessFactory extends AbstractBusinessFactory
     public function createKlettiesReader(): KlettiesReaderInterface
     {
         return new KlettiesReader($this->getRepository());
+    }
+
+    /**
+     * @return \FondOfKudu\Zed\Kletties\Business\Expander\OrderItemPrintjobIdExpanderInterface
+     */
+    public function createOrderItemPrintjobIdExpander(): OrderItemPrintjobIdExpanderInterface
+    {
+        return new OrderItemPrintjobIdExpander($this->getRepository());
     }
 
     /**

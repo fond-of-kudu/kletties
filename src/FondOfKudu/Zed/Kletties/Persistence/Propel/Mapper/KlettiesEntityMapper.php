@@ -28,10 +28,7 @@ class KlettiesEntityMapper implements KlettiesEntityMapperInterface
             ->setIdSalesOrder($klettiesOrder->getFkSalesOrder());
 
         foreach ($klettiesOrder->getFokKlettiesOrderItems() as $orderItem) {
-            $klettiesOrderTransfer->addVendorItem($this->mapOrderItemFromEntity(
-                $orderItem,
-                $klettiesOrderTransfer,
-            ));
+            $klettiesOrderTransfer->addVendorItem($this->mapOrderItemFromEntity($orderItem));
         }
 
         return $klettiesOrderTransfer;
@@ -55,14 +52,11 @@ class KlettiesEntityMapper implements KlettiesEntityMapperInterface
 
     /**
      * @param \Orm\Zed\Kletties\Persistence\FokKlettiesOrderItem $orderItem
-     * @param \Generated\Shared\Transfer\KlettiesOrderTransfer $klettiesOrderTransfer
      *
      * @return \Generated\Shared\Transfer\KlettiesOrderItemTransfer
      */
-    public function mapOrderItemFromEntity(
-        FokKlettiesOrderItem $orderItem,
-        KlettiesOrderTransfer $klettiesOrderTransfer
-    ): KlettiesOrderItemTransfer {
+    public function mapOrderItemFromEntity(FokKlettiesOrderItem $orderItem): KlettiesOrderItemTransfer
+    {
         $orderItemTransfer = new KlettiesOrderItemTransfer();
         $orderItemTransfer->fromArray($orderItem->toArray(), true);
         $orderItemTransfer
